@@ -1,7 +1,7 @@
 " Vim file plugin
 " Language:     Cfengine version 3
 " Maintainer:   Neil Watson <neil@watson-wilson.ca>
-" Last Change:  Thursday December 24 2009 
+" Last Change:  Wednesday October 05 2011 
 " Location:
 "
 " This is my first attempt at a syntax file.  Feel free to send me correctsion
@@ -21,13 +21,48 @@ let b:did_ftplugin = 1
 " Abbreviations
 iab = =>
 iab bu bundle
+iab han handle => "<C-R>=Eatchar('\s')<CR>
 iab cla classes:
-iab com commands:
+iab comma commands:
+iab comme comment => "<C-R>=Eatchar('\s')<CR>
 iab fil files:
 iab met methods:
 iab pro processes:
 iab rep reports:
 iab var vars:
+iab ba bundle agent
+iab bc bundle common
+
+" maps
+" Wrap WORD in double quotes
+nmap ,q dE<ESC>i"<ESC>pa"<ESC>
+" Insert blank promise
+nmap ,p o""<CR><TAB>handle => "",<CR>comment => ""<ESC>
+" quote list items
+vmap ,q :s/^\s*\(.*\)\s*$/"\1",/g<CR>
+" Insert whole self contained skeleton
+nmap ,k Obody common control {
+\<CR>
+\<CR>bundlesequence => {
+\<CR>"main",
+\<CR>};
+\<CR>
+\<CR>inputs => {
+\<CR>"cfengine_stdlib.cf",
+\<CR>};
+\<CR>}
+\<CR>
+\<CR>bundle agent main {
+\<CR>
+\<CR>methods:
+\<CR>
+\<CR>"any" usebundle => test;
+\<CR>
+\<CR>}
+\<CR>
+\<CR>bundle agent test {
+\<CR>
+\<CR>}<ESC>
 
 " TODO
 " Folding
@@ -35,3 +70,12 @@ iab var vars:
 
 " CREDITS
 " Neil Watson <neil@watson-wilson.ca>
+" Other Cfengine information: http://watson-wilson.ca/cfengine/
+"
+" CHANGES
+" Wednesday October 05 2011
+" - Added comment and handle abbs.  Assumes you have the Eatchar and Getchar
+" functions.
+" - Can now wrap words and lists in quotes.
+" - Insert blank promises (,p)
+" - Insert blank testing skeleton (,k)
