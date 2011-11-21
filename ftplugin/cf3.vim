@@ -32,6 +32,9 @@ iab rep reports:
 iab var vars:
 iab ba bundle agent
 iab bc bundle common
+iab up usebundle =>
+iab str string =>
+iab sli slist =>
 
 " maps
 " Wrap WORD in double quotes
@@ -79,3 +82,7 @@ nmap ,k Obody common control {
 " - Can now wrap words and lists in quotes.
 " - Insert blank promises (,p)
 " - Insert blank testing skeleton (,k)
+"
+" CHANGES
+" Monday November 21 2011
+" - IAB's for string, slist and usebundle.
