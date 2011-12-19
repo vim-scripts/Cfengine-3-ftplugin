@@ -32,7 +32,7 @@ iab rep reports:
 iab var vars:
 iab ba bundle agent
 iab bc bundle common
-iab up usebundle =>
+iab ub usebundle =>
 iab str string =>
 iab sli slist =>
 
